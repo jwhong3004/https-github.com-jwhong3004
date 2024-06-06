@@ -58,13 +58,13 @@ spec:
               - github.com
 
   steps:
-    - id: check-repo-existence
-      name: Check if repository exists
-      action: fetch:plain
-      input:
-        url: 'https://github.com/jwhong3004/https-github.com-jwhong3004'
-      output:
-        repoExists: 'test'
+#    - id: check-repo-existence
+#      name: Check if repository exists
+#      action: fetch:plain
+#      input:
+#        url: 'https://github.com/jwhong3004/https-github.com-jwhong3004'
+#      output:
+#        repoExists: 'test'
 # Getting the all the files/details from the template
     - id: fetch-base
       name: Fetching Details from content folder
@@ -101,13 +101,13 @@ spec:
           action: ${{ parameters.action }}
 
 # Registering new component in the catalog of backstage.
-#    - id: register
-#      name: Registering the new Component
-#     action: catalog:register
-#      input:
+    - id: register
+      name: Registering the new Component
+     action: catalog:register
+      input:
 #        repoContentsUrl: ${{steps['publish'].output.repoContentsUrl }}
-#        repoContentsUrl: 'https://github.com/jwhong3004/https-github.com-jwhong3004/tree/master'
-#        catalogInfoPath: '/component-info.yaml' # where the info of the catalog is stored.
+        repoContentsUrl: 'https://github.com/jwhong3004/https-github.com-jwhong3004/tree/master'
+        catalogInfoPath: '/component-info.yaml' # where the info of the catalog is stored.
 
 # Output links  are displayed to the user after the template execution.
   output:
