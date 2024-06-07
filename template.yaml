@@ -72,9 +72,9 @@ spec:
       name: Fetching Details from content folder
       action: fetch:template
       input:
-        url: ./content  # Location of the content directory where catlog-info.yaml file is present for the template
+        url: https://github.com/jwhong3004/https-github.com-jwhong3004/blob/master/component-info.yaml  # Location of the content directory where catlog-info.yaml file is present for the template
         values:
-          name: ${{ parameters.InstanceName}}
+          name: ${{ parameters.InstanceName }}
 
 # Publish the content of the current working directory to our github directory
 #    - id: publish
