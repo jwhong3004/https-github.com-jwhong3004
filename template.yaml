@@ -103,7 +103,7 @@ spec:
 # Registering new component in the catalog of backstage.
     - id: register
       name: Registering the new Component
-     action: catalog:register
+      action: catalog:register
       input:
 #        repoContentsUrl: ${{steps['publish'].output.repoContentsUrl }}
         repoContentsUrl: 'https://github.com/jwhong3004/https-github.com-jwhong3004/tree/master'
