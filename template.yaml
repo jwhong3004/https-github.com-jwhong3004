@@ -90,7 +90,7 @@ spec:
 
     - id: publish
       name: Publishing Details
-      if: "{{ steps.check-repo-existence.output.repoExists == "f" }}"
+      if: "{{ steps.check-repo-existence.output.repoExists == "d" }}"
       action: publish:github
       input:
         allowedHosts: ['github.com']
