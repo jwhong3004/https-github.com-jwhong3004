@@ -93,6 +93,16 @@ spec:
         repoUrl: ${{ parameters.repoUrl }}
         repoVisibility: public # or 'internal' or 'private'
 
+
+# Registering new component in the catalog of backstage.
+    - id: register
+      name: Registering the new Component
+      action: catalog:register
+      input:
+#        repoContentsUrl: ${{ parameters.repoUrl }}
+        repoContentsUrl: ${{steps['publish'].output.repoContentsUrl }}
+        catalogInfoPath: '/${{ parameters.InstanceName }}/component-info.yaml' # where the info of the catalog is stored.
+
 # Triggering CI-CD to create resource in our case github action.
     - id: github-action
       name: Starting GitHub action
@@ -105,16 +115,7 @@ spec:
           instanceName: ${{ parameters.InstanceName }}
           awsRegion: ${{ parameters.Region }}
           instanceType: ${{ parameters.InstanceType }}
-          action: ${{ parameters.action }}
-
-# Registering new component in the catalog of backstage.
-    - id: register
-      name: Registering the new Component
-      action: catalog:register
-      input:
-#        repoContentsUrl: ${{ parameters.repoUrl }}
-        repoContentsUrl: ${{steps['publish'].output.repoContentsUrl }}
-        catalogInfoPath: '/${{ parameters.InstanceName }}/component-info.yaml' # where the info of the catalog is stored.
+          action: ${{ parameters.action }}        
 
 # Output links  are displayed to the user after the template execution.
   output:
