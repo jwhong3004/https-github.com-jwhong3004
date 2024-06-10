@@ -58,6 +58,7 @@ spec:
           ui:options:
             allowedHosts:
               - github.com
+              - api.github.com
 
   steps:
     - id: check-repo-existence
