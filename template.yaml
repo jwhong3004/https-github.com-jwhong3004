@@ -112,16 +112,18 @@ spec:
     - id: publish2
       name: Publishing Details2
       if: ${{ parameters.exist === "y" }}
-      action: shell:script
+      action: fs:execute
       input:
-        shell: bash
-        script: |
+        workingDirectory: '.'
+        command: |
           git init
           git remote add origin ${{ parameters.repoUrl }}
           git fetch origin
           git add .
           git commit -m "Updating repository with new changes"
           git push origin main --force
+        environment:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
 # Triggering CI-CD to create resource in our case github action.
