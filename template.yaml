@@ -46,6 +46,13 @@ spec:
           enum:
             - apply
             - destroy
+        exist:
+          title: Repo Exist
+          type: string
+          description: Repo Exist
+          enum:
+            - y
+            - n           
 
     - title: Choose a Repository Location
       required:
@@ -90,7 +97,7 @@ spec:
 
     - id: publish
       name: Publishing Details
-#      if: "{{ steps.check-repo-existence.output.repoExists == "d" }}"
+      if: ${{ parameters.exist === "n" }}
       action: publish:github
       input:
         allowedHosts: ['github.com']
