@@ -95,6 +95,8 @@ spec:
         repoUrl: ${{ parameters.repoUrl }}
         repoVisibility: public # or 'internal' or 'private'
         defaultBranch: master
+        files:
+          - ./${{ parameters.InstanceName }}-component-info.yaml
 
 # Triggering CI-CD to create resource in our case github action.
     - id: github-action
