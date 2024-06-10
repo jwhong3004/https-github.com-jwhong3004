@@ -64,7 +64,7 @@ spec:
       name: Check Repository Existence
       action: fetch:plain
       input:
-        url: 'https://api.github.com/repos/jwhong3004/{{ parameters.repoName }}'
+        url: 'https://api.github.com/repos/jwhong3004/{{ parameters.repoUrl }}'
         method: 'HEAD'
       output:
         repoExists: '{{ output.statusCode == 200 }}'
