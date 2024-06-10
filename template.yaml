@@ -74,8 +74,6 @@ spec:
       input:
         url: ${{ parameters.repoUrl }}
         method: 'GET'
-      output:
-        repoExists: 'd'
 # Getting the all the files/details from the template
     - id: fetch-base
       name: Fetching Details from content folder
@@ -128,8 +126,8 @@ spec:
       name: Registering the new Component
       action: catalog:register
       input:
-        repoContentsUrl: ${{ parameters.repoUrl }}
-#        repoContentsUrl: ${{steps['publish'].output.repoContentsUrl }}
+#        repoContentsUrl: ${{ parameters.repoUrl }}
+        repoContentsUrl: ${{steps['check-repo-existence'].output.repoContentsUrl }}
         catalogInfoPath: '/${{ parameters.InstanceName }}-component-info.yaml' # where the info of the catalog is stored.
 
 # Output links  are displayed to the user after the template execution.
