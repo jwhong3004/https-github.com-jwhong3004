@@ -65,8 +65,8 @@ spec:
       name: Check Repository Existence
       action: fetch:plain
       input:
-        url: 'https://api.github.com/repos/jwhong3004/{{ parameters.repoUrl }}'
-        method: 'HEAD'
+        url: 'https://github.com/jwhong3004/{{ parameters.repoUrl }}'
+        method: 'GET'
       output:
         repoExists: '{{ output.statusCode == 200 }}'
 # Getting the all the files/details from the template
