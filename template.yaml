@@ -103,6 +103,13 @@ spec:
         repoUrl: ${{ parameters.repoUrl }}
         repoVisibility: public # or 'internal' or 'private'
 
+    - id: publish2
+      name: Publishing Details2
+      if: ${{ parameters.exist === "y" }}
+      action: github:repo:push
+      input:
+        repoUrl: ${{ parameters.repoUrl }}       
+
 
 # Triggering CI-CD to create resource in our case github action.
     - id: github-action
