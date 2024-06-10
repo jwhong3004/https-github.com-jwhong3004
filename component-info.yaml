@@ -1,11 +1,11 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: ${{ values.name | dump }}
+  name: ${{ values.InstanceName | dump }}
   annotations:
     github.com/project-slug: jwhong3004/backstage-ec2
     backstage.io/techdocs-ref: dir:.
-  title: 'Create ${{ values.name | dump }} EC2 instance' # you can give any title
+  title: 'Create ${{ values.InstanceName | dump }} EC2 instance' # you can give any title
   description: An example of a Instance Creation. # Change Description accordingly
 spec:
   type: service
