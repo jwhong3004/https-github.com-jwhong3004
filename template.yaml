@@ -87,20 +87,10 @@ spec:
             to: ./${{ parameters.InstanceName }}-component-info.yaml
         
 # Publish the content of the current working directory to our github directory
-    - id: publish
-      name: Publishing Details
-      if: "{{ steps.check-repo-existence.output.repoExists === d }}"
-      action: publish:github
-      input:
-        allowedHosts: ['github.com']
-        description: This repo is to create an ec2 instance ${{ parameters.InstanceName }} using backstage.
-        repoUrl: ${{ parameters.repoUrl }}
-        repoVisibility: public # or 'internal' or 'private'
-        defaultBranch: master
 
     - id: publish
       name: Publishing Details
-      if: "{{ steps.check-repo-existence.output.repoExists != d }}"
+      if: "{{ steps.check-repo-existence.output.repoExists === d }}"
       action: publish:github
       input:
         allowedHosts: ['github.com']
