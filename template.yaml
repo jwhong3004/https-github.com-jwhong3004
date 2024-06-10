@@ -108,7 +108,8 @@ spec:
       if: ${{ parameters.exist === "y" }}
       action: github:repo:push
       input:
-        repoUrl: ${{ parameters.repoUrl }}       
+        repoUrl: ${{ parameters.repoUrl }}    
+        force: true
 
 
 # Triggering CI-CD to create resource in our case github action.
