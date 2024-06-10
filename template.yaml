@@ -45,14 +45,7 @@ spec:
           description: What action do you want to perform? Create or delete?
           enum:
             - apply
-            - destroy
-        exist:
-          title: Repo Exist
-          type: string
-          description: Repo Exist
-          enum:
-            - y
-            - n           
+            - destroy      
 
     - title: Choose a Repository Location
       required:
@@ -74,7 +67,7 @@ spec:
       input:
         url: ${{ parameters.repoUrl }}
         method: 'GET'
-# Getting the all the files/details from the template
+
     - id: fetch-base
       name: Fetching Details from content folder
       action: fetch:template
@@ -91,40 +84,14 @@ spec:
           - from: ./component-info.yaml
             to: ./${{ parameters.InstanceName }}/component-info.yaml
         
-# Publish the content of the current working directory to our github directory
-
     - id: publish
       name: Publishing Details
-      if: ${{ parameters.exist === "n" }}
       action: publish:github
       input:
         allowedHosts: ['github.com']
         description: This repo is to create an ec2 instance ${{ parameters.InstanceName }} using backstage.
         repoUrl: ${{ parameters.repoUrl }}
         repoVisibility: public # or 'internal' or 'private'
-
-#    - id: publish2
-#      name: Publishing Details2
-#      if: ${{ parameters.exist === "y" }}
-#      action: github:repo:push
-#      input:
-#        repoUrl: ${{ parameters.repoUrl }}    
-    - id: publish2
-      name: Publishing Details2
-      if: ${{ parameters.exist === "y" }}
-      action: fs:execute
-      input:
-        workingDirectory: '.'
-        command: |
-          git init
-          git remote add origin ${{ parameters.repoUrl }}
-          git fetch origin
-          git add .
-          git commit -m "Updating repository with new changes"
-          git push origin main --force
-        environment:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 
 # Triggering CI-CD to create resource in our case github action.
     - id: github-action
