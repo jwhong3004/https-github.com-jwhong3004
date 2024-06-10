@@ -84,7 +84,7 @@ spec:
       input:
         allowedHosts: ['github.com']
         description: This repo is to create an ec2 instance ${{ parameters.InstanceName }} using backstage.
-        repoUrl: ${{ parameters.repoUrl }}
+        repoUrl: ${{ parameters.repoUrl }}/${{ parameters.InstanceName }}
         repoVisibility: public # or 'internal' or 'private'
         defaultBranch: master
 
@@ -107,7 +107,8 @@ spec:
       name: Registering the new Component
       action: catalog:register
       input:
-        repoContentsUrl: 'https://github.com/jwhong3004/https-github.com-jwhong3004/tree/master'
+#        repoContentsUrl: 'https://github.com/jwhong3004/https-github.com-jwhong3004/tree/master'
+        repoContentsUrl: ${{steps['publish'].output.repoContentsUrl }}
         catalogInfoPath: '/component-info.yaml' # where the info of the catalog is stored.
 
 # Output links  are displayed to the user after the template execution.
