@@ -107,7 +107,7 @@ spec:
       name: Registering the new Component
       action: catalog:register
       input:
-        repoContentsUrl: 'https://github.com/jwhong3004/https-github.com-jwhong3004/tree/master/content/'
+        repoContentsUrl: 'https://github.com/jwhong3004/https-github.com-jwhong3004/tree/master'
         catalogInfoPath: '/component-info.yaml' # where the info of the catalog is stored.
 
 # Output links  are displayed to the user after the template execution.
