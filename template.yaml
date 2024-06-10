@@ -122,8 +122,7 @@ spec:
           git add .
           git commit -m "Updating repository with new changes"
           git push origin main --force
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
 # Triggering CI-CD to create resource in our case github action.
     - id: github-action
