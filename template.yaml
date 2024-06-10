@@ -68,7 +68,7 @@ spec:
         url: ${{ parameters.repoUrl }}
         method: 'GET'
       output:
-        repoExists: '{{ output.statusCode == 200 }}'
+        repoExists: 'd'
 # Getting the all the files/details from the template
     - id: fetch-base
       name: Fetching Details from content folder
@@ -89,7 +89,7 @@ spec:
 # Publish the content of the current working directory to our github directory
     - id: publish
       name: Publishing Details
-      if: "{{ steps.check-repo-existence.output.repoExists !== true }}"
+      if: "{{ steps.check-repo-existence.output.repoExists === d }}"
       action: publish:github
       input:
         allowedHosts: ['github.com']
@@ -100,7 +100,7 @@ spec:
 
     - id: publish
       name: Publishing Details
-      if: "{{ steps.check-repo-existence.output.repoExists === true }}"
+      if: "{{ steps.check-repo-existence.output.repoExists != d }}"
       action: publish:github
       input:
         allowedHosts: ['github.com']
