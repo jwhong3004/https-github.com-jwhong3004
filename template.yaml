@@ -76,12 +76,13 @@ spec:
         values:
           name: ${{ parameters.InstanceName }}      
  
-    - id: rename-file
-      name: Rename component-info.yaml to new-name.yaml
-      action: shell:script
+    - id: rename
+      name: Rename solution and project files
+      action: fs:rename
       input:
-        script: |
-          mv component-info.yaml ${{ parameters.InstanceName }}-component-info.yaml
+        files:
+          - from: ./component-info.yaml
+            to: ./${{ parameters.InstanceName }}-component-info.yaml
         
 # Publish the content of the current working directory to our github directory
     - id: publish
