@@ -77,16 +77,16 @@ spec:
           name: ${{ parameters.InstanceName }}
 
 # Publish the content of the current working directory to our github directory
-#    - id: publish
-#      name: Publishing Details
+    - id: publish
+      name: Publishing Details
 #      if: "{{ steps.check-repo-existence.output.repoExists != test }}"
-#      action: publish:github
-#      input:
-#        allowedHosts: ['github.com']
-#        description: This repo is to create an ec2 instance ${{ parameters.InstanceName }} using backstage.
-#        repoUrl: ${{ parameters.repoUrl }}
-#        repoVisibility: public # or 'internal' or 'private'
-        # defaultBranch: master
+      action: publish:github
+      input:
+        allowedHosts: ['github.com']
+        description: This repo is to create an ec2 instance ${{ parameters.InstanceName }} using backstage.
+        repoUrl: ${{ parameters.repoUrl }}
+        repoVisibility: public # or 'internal' or 'private'
+        defaultBranch: master
 
 # Triggering CI-CD to create resource in our case github action.
     - id: github-action
