@@ -75,7 +75,14 @@ spec:
         url: ./  # Location of the content directory where catlog-info.yaml file is present for the template
         values:
           name: ${{ parameters.InstanceName }}      
-
+ 
+    - id: rename-file
+      name: Rename component-info.yaml to new-name.yaml
+      action: shell:script
+      input:
+        script: |
+          mv component-info.yaml ${{ parameters.InstanceName }}-component-info.yaml
+        
 # Publish the content of the current working directory to our github directory
     - id: publish
       name: Publishing Details
@@ -109,7 +116,7 @@ spec:
       input:
 #        repoContentsUrl: 'https://github.com/jwhong3004/https-github.com-jwhong3004/tree/master'
         repoContentsUrl: ${{steps['publish'].output.repoContentsUrl }}
-        catalogInfoPath: '/component-info.yaml' # where the info of the catalog is stored.
+        catalogInfoPath: '/${{ parameters.InstanceName }}-component-info.yaml' # where the info of the catalog is stored.
 
 # Output links  are displayed to the user after the template execution.
   output:
