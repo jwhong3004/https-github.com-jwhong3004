@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: ${{ values.name | dump }}
+  name: backstage-ec2
   annotations:
     github.com/project-slug: jwhong3004/https-github.com-jwhong3004
     backstage.io/techdocs-ref: dir:.
