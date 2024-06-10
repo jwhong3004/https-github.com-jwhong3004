@@ -89,7 +89,7 @@ spec:
       input:
         files:
           - from: ./component-info.yaml
-            to: ./${{ parameters.InstanceName }}-component-info.yaml
+            to: ./ec2/${{ parameters.InstanceName }}-component-info.yaml
         
 # Publish the content of the current working directory to our github directory
 
@@ -102,9 +102,6 @@ spec:
         description: This repo is to create an ec2 instance ${{ parameters.InstanceName }} using backstage.
         repoUrl: ${{ parameters.repoUrl }}
         repoVisibility: public # or 'internal' or 'private'
-        files:
-          - src: ./component-info.yaml
-            dest: ./${{ parameters.InstanceName }}-component-info.yaml     
 
 
 # Triggering CI-CD to create resource in our case github action.
