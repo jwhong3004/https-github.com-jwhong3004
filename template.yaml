@@ -102,15 +102,14 @@ spec:
         description: This repo is to create an ec2 instance ${{ parameters.InstanceName }} using backstage.
         repoUrl: ${{ parameters.repoUrl }}
         repoVisibility: public # or 'internal' or 'private'
+        sourcePath: ./service
 
-    - id: publish2
-      name: Publishing Details2
-      if: ${{ parameters.exist === "y" }}
-      action: github:repo:push
-      input:
-        repoUrl: ${{ parameters.repoUrl }}    
-        force: true
-
+#    - id: publish2
+#      name: Publishing Details2
+#      if: ${{ parameters.exist === "y" }}
+#      action: github:repo:push
+#      input:
+#        repoUrl: ${{ parameters.repoUrl }}    
 
 # Triggering CI-CD to create resource in our case github action.
     - id: github-action
