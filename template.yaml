@@ -5,8 +5,8 @@ metadata:
   title: Create an EC2 Instance
   description: Create an Instance to deploy your application2
   tags: ['recommended']
-  annotations:
-    github.com/project-slug: jwhong3004/https-github.com-jwhong3004
+#  annotations:
+#    github.com/project-slug: jwhong3004/https-github.com-jwhong3004
 spec:
   owner: guests
   type: service
@@ -60,13 +60,6 @@ spec:
               - github.com
 
   steps:
-    - id: check-repo-existence
-      name: Check Repository Existence
-      action: fetch:plain
-      input:
-        url: ${{ parameters.repoUrl }}
-        method: 'GET'
-
     - id: fetch-base
       name: Fetching Details from content folder
       action: fetch:template
@@ -93,15 +86,13 @@ spec:
         repoUrl: ${{ parameters.repoUrl }}
         repoVisibility: public # or 'internal' or 'private'
 
-
 # Registering new component in the catalog of backstage.
     - id: register
       name: Registering the new Component
       action: catalog:register
       input:
-#        repoContentsUrl: ${{ parameters.repoUrl }}
         repoContentsUrl: ${{steps['publish'].output.repoContentsUrl }}
-        catalogInfoPath: '/${{ parameters.InstanceName }}-component-info.yaml' # where the info of the catalog is stored.
+        catalogInfoPath: '/${{ parameters.InstanceName }}-component-info.yaml'
 
 # Triggering CI-CD to create resource in our case github action.
     - id: github-action
