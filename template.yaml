@@ -66,6 +66,7 @@ spec:
             allowedHosts:
               - github.com
           default: github.com?repo=backstage-test&owner=jwhong3004
+          readOnly: true
 
   steps:
     - id: fetch-base
