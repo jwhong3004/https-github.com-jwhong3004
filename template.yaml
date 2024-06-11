@@ -65,8 +65,7 @@ spec:
           ui:options:
             allowedHosts:
               - github.com
-          default: jwhong3004
-          default: backstage-test
+          default: github.com?repo=backstage-test&owner=jwhong3004
 
   steps:
     - id: fetch-base
