@@ -65,8 +65,8 @@ spec:
           ui:options:
             allowedHosts:
               - github.com
-          Owner: jwhong3004
-          Repository: ddd
+          default: jwhong3004
+          default: backstage-test
 
   steps:
     - id: fetch-base
