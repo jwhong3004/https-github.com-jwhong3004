@@ -45,7 +45,8 @@ spec:
           description: What action do you want to perform? Create or delete?
           enum:
             - apply
-            - destroy      
+            - destroy  
+          default: apply
 
     - title: Choose a Repository Location
       required:
