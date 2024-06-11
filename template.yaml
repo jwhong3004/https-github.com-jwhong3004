@@ -67,7 +67,7 @@ spec:
         url: ./content  # Location of the content directory where catlog-info.yaml file is present for the template
         values:
           name: ${{ parameters.InstanceName }}
-          repo: ${{ parameters.repoUrl }}
+          repo: ${{steps['publish'].output.repoContentsUrl }}
  
     - id: rename
       name: Rename solution and project files
