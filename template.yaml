@@ -48,23 +48,24 @@ spec:
             - destroy  
           default: apply
 
-        repoUrl:
-          title:  Component repo
-          type: string
-          description: Component repo
-          default: github.com?repo=${{ parameters.InstanceName }}&owner=jwhong3004
-
-#    - title: Choose a Repository Location
-#      required:
-#        - repoUrl
-#      properties:
 #        repoUrl:
-#          title: Location of the repository
+#          title:  Component repo
 #          type: string
-#          ui:field: RepoUrlPicker
-#          ui:options:
-#            allowedHosts:
-#              - github.com
+#          description: Component repo
+#          default: github.com?repo=${{ parameters.InstanceName }}&owner=jwhong3004
+
+    - title: Choose a Repository Location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Location of the repository
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
+          default: ${{ parameters.InstanceName }}
 
   steps:
     - id: fetch-base
