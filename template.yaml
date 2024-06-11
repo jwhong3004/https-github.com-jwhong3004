@@ -65,7 +65,8 @@ spec:
           ui:options:
             allowedHosts:
               - github.com
-          default: ${{ parameters.InstanceName }}
+          Owner: jwhong3004
+          Repository: ddd
 
   steps:
     - id: fetch-base
