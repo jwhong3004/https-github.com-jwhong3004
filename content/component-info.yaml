@@ -5,6 +5,7 @@ metadata:
   annotations:
     github.com/project-slug: jwhong3004/backstage-ec2
     backstage.io/techdocs-ref: dir:.
+    github.com/workflows: instance.yml
   title: '${{ values.name | dump }} / EC2 instance' # you can give any title
   description: 'An example of a Instance Creation. repo: ${{ values.repo | dump }}'
 spec:
