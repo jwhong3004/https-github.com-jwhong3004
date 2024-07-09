@@ -1,0 +1,125 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: create-ec2-instance
+  title: Create an EC2 Instance
+  description: Create an application
+  tags: ['recommended']
+spec:
+  owner: guests
+  type: service
+  parameters:
+    - title: EC2 Instance Creation
+      required:
+         - ApplicationName
+         - Replicas
+         - InstanceType
+      properties:
+        ApplicationName:
+          title: Application Name.
+          type: string
+          description: Name of the Instnace to be created.
+          ui:autofocus: true
+          ui:options:
+            rows: 5
+
+        Region:
+          title:  AWS Region
+          type: string
+          description: Name of the region where you want to create your create-ec2-instance eg:- us-east-1, ap-south-1 etc.
+
+        Replicas:
+          title: Count of Application.
+          type: string
+          description: Count of the instance that you want to deploy, for eg:- 1, 2 etc.
+          enum:
+            - 1
+            - 2
+            - 3
+            - 4
+        action:
+          title: action
+          type: string
+          description: What action do you want to perform? Create or delete?
+          enum:
+            - apply
+            - destroy  
+          default: apply
+
+#        repoUrl:
+#          title:  Component repo
+#          type: string
+#          description: Component repo
+#          default: github.com?repo=${{ parameters.ApplicationName }}&owner=jwhong3004
+
+    - title: Choose a Repository Location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Location of the repository
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
+          default: github.com?repo=backstage-test&owner=jwhong3004
+          readOnly: true
+
+  steps:
+    - id: fetch-base
+      name: Fetching Details from content folder
+      action: fetch:template
+      input:
+        url: ./content  # Location of the content directory where catlog-info.yaml file is present for the template
+        values:
+          name: ${{ parameters.ApplicationName }}
+          repo: ${{ parameters.repoUrl }}
+ 
+    - id: rename
+      name: Rename solution and project files
+      action: fs:rename
+      input:
+        files:
+          - from: ./component-info.yaml
+            to: ./${{ parameters.ApplicationName }}-component-info.yaml
+        
+    - id: publish
+      name: Publishing Details
+      action: publish:github
+      input:
+        allowedHosts: ['github.com']
+        description: This repo is to create an ec2 instance ${{ parameters.ApplicationName }} using backstage.
+        repoUrl: ${{ parameters.repoUrl }}
+        repoVisibility: public # or 'internal' or 'private'
+
+# Registering new component in the catalog of backstage.
+    - id: register
+      name: Registering the new Component
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{steps['publish'].output.repoContentsUrl }}
+        catalogInfoPath: '/${{ parameters.ApplicationName }}-component-info.yaml'
+
+# Triggering CI-CD to create resource in our case github action.
+    - id: github-action
+      name: Starting GitHub action
+      action: github:actions:dispatch
+      input:
+        workflowId: instance.yml # ID of GitHub action WorkFlow
+        repoUrl: 'github.com?repo=backstage-ec2&owner=jwhong3004'
+        branchOrTagName: 'main'
+        workflowInputs:
+          ApplicationName: ${{ parameters.ApplicationName }}
+          awsRegion: ${{ parameters.Region }}
+          Replicas: ${{ parameters.Replicas }}
+          action: ${{ parameters.action }}        
+
+# Output links  are displayed to the user after the template execution.
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps['publish'].output.remoteUrl }}
+      - title: Open in catalog
+        icon: catalog
+        entityRef: ${{ steps['register'].output.entityRef }}
