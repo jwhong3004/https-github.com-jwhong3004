@@ -5,8 +5,8 @@ metadata:
   title: Create an EC2 Instance
   description: Create an Instance to deploy your application2
   tags: ['recommended']
-#  annotations:
-#    github.com/project-slug: jwhong3004/https-github.com-jwhong3004
+  annotations:
+    github.com/project-slug: jwhong3004/https-github.com-jwhong3004
 spec:
   owner: guests
   type: service
