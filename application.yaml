@@ -40,10 +40,10 @@ spec:
           type: string
           description: Count of the instance that you want to deploy, for eg:- 1, 2 etc.
           enum:
-            - 1
-            - 2
-            - 3
-            - 4
+            - '1'
+            - '2'
+            - '3'
+            - '4'
             
         action:
           title: action
