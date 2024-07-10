@@ -1,24 +1,31 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: create-ec2-instance
-  title: Create an EC2 Instance
+  name: create-application-instance
+  title: Create an Application Instance
   description: Create an application
   tags: ['recommended']
 spec:
   owner: guests
   type: service
   parameters:
-    - title: EC2 Instance Creation
+    - title: Aoplication Instance Creation
       required:
          - ApplicationName
          - Replicas
-         - InstanceType
+         - Region
+         - EKSname
+         
       properties:
+        EKSname:
+          title: EKS name.
+          type: string
+          description: EKS name that needs to be deployed
+          
         ApplicationName:
           title: Application Name.
           type: string
-          description: Name of the Instnace to be created.
+          description: Name of the Application to be created.
           ui:autofocus: true
           ui:options:
             rows: 5
@@ -26,7 +33,7 @@ spec:
         Region:
           title:  AWS Region
           type: string
-          description: Name of the region where you want to create your create-ec2-instance eg:- us-east-1, ap-south-1 etc.
+          description: Name of the region where you want to create your create-application-instance eg:- us-east-1, ap-south-1 etc.
 
         Replicas:
           title: Count of Application.
@@ -37,6 +44,7 @@ spec:
             - 2
             - 3
             - 4
+            
         action:
           title: action
           type: string
@@ -89,7 +97,7 @@ spec:
       action: publish:github
       input:
         allowedHosts: ['github.com']
-        description: This repo is to create an ec2 instance ${{ parameters.ApplicationName }} using backstage.
+        description: This repo is to create an application instance ${{ parameters.ApplicationName }} using backstage.
         repoUrl: ${{ parameters.repoUrl }}
         repoVisibility: public # or 'internal' or 'private'
 
@@ -107,9 +115,10 @@ spec:
       action: github:actions:dispatch
       input:
         workflowId: instance.yml # ID of GitHub action WorkFlow
-        repoUrl: 'github.com?repo=backstage-ec2&owner=jwhong3004'
+        repoUrl: 'github.com?repo=backstage-application&owner=jwhong3004'
         branchOrTagName: 'main'
         workflowInputs:
+          EKSname: ${{ parameters.EKSname }}
           ApplicationName: ${{ parameters.ApplicationName }}
           awsRegion: ${{ parameters.Region }}
           Replicas: ${{ parameters.Replicas }}
