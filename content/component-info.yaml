@@ -6,6 +6,7 @@ metadata:
     github.com/project-slug: jwhong3004/backstage-application
     backstage.io/techdocs-ref: dir:.
     github.com/workflows: application.yml
+    backstage.io/kubernetes-id: nginx
     backstage.io/kubernetes-label-selector: 'k8sgpts.k8sgpt.ai/backend=openai'
   title: '${{ values.name | dump }} / EC2 instance' # you can give any title
   description: 'An example of a Instance Creation. repo: ${{ values.repo | dump }}'
