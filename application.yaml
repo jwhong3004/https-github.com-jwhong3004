@@ -22,7 +22,7 @@ spec:
           type: string
           description: EKS name that needs to be deployed
           enum:
-            - 'stadnard-eks'        
+            - 'standard-eks'        
           
         ApplicationName:
           title: Application Name.
