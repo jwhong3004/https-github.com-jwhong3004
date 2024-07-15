@@ -1,5 +1,5 @@
 {
-    "name": "backstage-test",
+    "name": "backstage-application",
     "private": true,
     "dependencies": {}
 }
