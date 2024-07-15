@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ${{ values.name }}
+  annotations:
+    github.com/project-slug: jwhong3004/backstage-ec2
+    backstage.io/techdocs-ref: dir:.
+    github.com/workflows: instance.yml
+    backstage.io/kubernetes-label-selector: 'k8sgpts.k8sgpt.ai/backend=openai'
+  title: '${{ values.name | dump }} / EC2 instance' # you can give any title
+  description: 'An example of a Instance Creation.
+spec:
+  type: service
+  owner: guests
+  lifecycle: experimental
