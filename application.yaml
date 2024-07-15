@@ -21,6 +21,8 @@ spec:
           title: EKS name.
           type: string
           description: EKS name that needs to be deployed
+          enum:
+            - 'stadnard-eks'        
           
         ApplicationName:
           title: Application Name.
@@ -34,6 +36,9 @@ spec:
           title:  AWS Region
           type: string
           description: Name of the region where you want to create your create-application-instance eg:- us-east-1, ap-south-1 etc.
+          enum:
+            - 'ap-northeast-2'
+            - 'ua-east-1'
 
         Replicas:
           title: Count of Application.
