@@ -41,7 +41,7 @@ spec:
             - 'ua-east-1'
 
         Replicas:
-          title: Count of Application.
+          title: Replicas
           type: string
           description: Count of the instance that you want to deploy, for eg:- 1, 2 etc.
           enum:
