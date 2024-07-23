@@ -4,7 +4,7 @@ metadata:
   name: ${{ values.name }}
   annotations:
     github.com/project-slug: jwhong3004/backstage-application
-    backstage.io/techdocs-ref: url:https://github.com/jwhong3004/${{ values.repoUrl }}/tree/master
+    backstage.io/techdocs-ref: url:https://github.com/jwhong3004/${{ values.repo }}/tree/master
     github.com/workflows: application.yml
     backstage.io/kubernetes-label-selector: 'app=${{ values.name }}'
   title: '${{ values.name | dump }} / EC2 Application'
